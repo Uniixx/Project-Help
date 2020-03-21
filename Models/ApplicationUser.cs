@@ -11,6 +11,7 @@ namespace Project_help.Models
         public int AccountType { get; set; }
         public string CountryCode { get; set; }
         public int Age { get; set; }
-        public bool IsAdmin { get; set; }
+        public bool IsStaff { get; set; }
+        public int StaffLevel { get; set; }
     }
 }
