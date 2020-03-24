@@ -11,6 +11,5 @@ namespace Project_help.Models
         public string ShortName { get; set; } // example for coronavirus this would be equal to "COVID-19"
         public string OrganismFullName { get; set; }
         public string OrganismInformation { get; set; }
-
     }
 }

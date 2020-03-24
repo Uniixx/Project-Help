@@ -7,7 +7,7 @@ namespace Project_help.Models
 {
     public class User
     {
-        public virtual ICollection<Companies> Companies { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
         public string UserBio { get; set; }
     }
 }
