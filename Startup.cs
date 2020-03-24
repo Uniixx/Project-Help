@@ -37,6 +37,30 @@ namespace Project_help
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             services.AddAuthentication()
+                .AddGoogle(googleoptions =>
+                {
+                    // default callback is <domain>/signin-google
+                    googleoptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                    googleoptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
+                })
+                .AddTwitter(twitteroptions =>
+                {
+                    // default callback is <domain>/signin-twitter
+                    twitteroptions.ConsumerKey = Configuration["Authentication:Twitter:CustomerKey"];
+                    twitteroptions.ConsumerSecret = Configuration["Authentication:Twitter:CustomerSecret"];
+                })
+                .AddFacebook(facebookoptions =>
+                {
+                    // default callback is <domain>/signin-facebook
+                    facebookoptions.ClientId = Configuration["Authentication:Facebook:ClientId"];
+                    facebookoptions.ClientSecret = Configuration["Authentication:Facebook:ClientSecret"];
+                })
+                .AddMicrosoftAccount(microsoftoptions =>
+                {
+                    // default callback is <domain>/signin-microsoft
+                    microsoftoptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
+                    microsoftoptions.ClientSecret = Configuration["Authentication:Facebook:ClientSecret"];
+                })
                 .AddIdentityServerJwt();
 
             services.AddControllersWithViews();
@@ -47,6 +71,8 @@ namespace Project_help
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
