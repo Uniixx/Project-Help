@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Project_help.Models
 {
-    public class EnterprisesModel
+    public class User
     {
-
+        public virtual ICollection<Companies> Companies { get; set; }
+        public string UserBio { get; set; }
     }
 }

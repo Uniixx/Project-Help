@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Project_help.Models
 {
-    public class CompaniesModel
+    public class Companies
     {
         public string name { get; set; }
         public string Address { get; set; }

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Project_help.Models
 {
-    public class VolunteerModel
+    public class Volunteer
     {
-        public virtual ICollection<CompaniesModel> Companies { get; set; }
+        public virtual ICollection<Companies> Companies { get; set; }
         public string UserBio { get; set; }
     }
 }
