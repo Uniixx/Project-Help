@@ -10,7 +10,7 @@ using Project_help.Data;
 using Project_help.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting; 
 
 namespace Project_help
 {
@@ -65,6 +65,7 @@ namespace Project_help
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSignalR();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
