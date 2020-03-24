@@ -13,5 +13,6 @@ namespace Project_help.Models
         public int Age { get; set; }
         public bool IsStaff { get; set; }
         public int StaffLevel { get; set; }
+        public bool IsAccountSuspended { get; set; }
     }
 }
