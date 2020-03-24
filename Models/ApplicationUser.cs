@@ -14,5 +14,7 @@ namespace Project_help.Models
         public bool IsStaff { get; set; }
         public int StaffLevel { get; set; }
         public bool IsAccountSuspended { get; set; }
+        public string AccountSuspensionReason { get; set; }
+        public DateTime TimeSuspended { get; set; }
     }
 }
