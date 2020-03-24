@@ -19,8 +19,8 @@ namespace Project_help.Controllers
         }
 
         // GET: api/User/5
-        [HttpGet("{name}", Name = "Get")]
-        public string Get(string name)
+        [HttpGet("{id}")]
+        public string Get(string id)
         {
             return "value";
         }

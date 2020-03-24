@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "semantic-ui-css/semantic.min.css";
+//import "semantic-ui-css/semantic.min.css";
 import { Container } from "reactstrap";
 import { NavMenu } from "./NavMenu";
 

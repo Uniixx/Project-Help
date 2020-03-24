@@ -18,8 +18,8 @@ namespace Project_help.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/User/5
-        [HttpGet("{name}", Name = "Get")]
+        // GET: api/User/{name}
+        [HttpGet("{id}")]
         public string Get(string name)
         {
             return "value";
