@@ -10,7 +10,12 @@ using Project_help.Data;
 using Project_help.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting; 
+using Microsoft.Extensions.Hosting;
+using System.Net.WebSockets;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using System;
+using System.Threading;
 
 namespace Project_help
 {
@@ -94,6 +99,21 @@ namespace Project_help
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseWebSockets();
+
+            app.Use(async (context, next) =>
+            {
+                if (context.WebSockets.IsWebSocketRequest)
+                {
+                    WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
+                    await Echo(context, webSocket);
+                }
+                else
+                {
+                    await context.Response.WriteAsync("Not a websocket request");
+                    context.Response.StatusCode = 403;
+                }
+            });
 
             app.UseRouting();
 
@@ -117,6 +137,19 @@ namespace Project_help
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+        }
+
+        private async Task Echo(HttpContext context, WebSocket webSocket)
+        {
+            var buffer = new byte[1024 * 4];
+            WebSocketReceiveResult result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+            while (!result.CloseStatus.HasValue)
+            {
+                await webSocket.SendAsync(new ArraySegment<byte>(buffer, 0, result.Count), result.MessageType, result.EndOfMessage, CancellationToken.None);
+
+                result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+            }
+            await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
         }
     }
 }
