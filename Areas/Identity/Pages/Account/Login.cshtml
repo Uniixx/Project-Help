@@ -2,8 +2,26 @@
 @model LoginModel
 
 @{
-  ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Log in";
 }
+
+
+
+@functions{
+    public string PageTitle { get; set; } = "Login";
+    public string Language { get; set; }
+
+    protected void SwitchLanguage()
+    {
+      PageTitle = "Connexion";
+    }
+
+    public void OnPostSwitch()
+    {
+      PageTitle = "Connexion";
+    }
+}
+
 
 <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -15,18 +33,18 @@
         <div class="col-md-4">
           <section>
             <form id="account" method="post">
-              <h4>Log in.</h4>
+              <h4>@PageTitle</h4>
               <hr />
               <div asp-validation-summary="All" class="text-danger"></div>
               <div class="form-group">
-                  <label asp-for="Input.Email"></label>
-                  <input asp-for="Input.Email" type="text" class="form-control">
-                  <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" type="text" class="form-control">
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
               </div>
               <div class="form-group">
-                  <label asp-for="Input.Password"></label>
-                  <input asp-for="Input.Password" class="form-control" type="password">
-                  <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" type="password">
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
               </div>
               <div class="form-group">
                 <div class="checkbox">
@@ -40,6 +58,7 @@
                 <button type="submit" class="ui primary button">
                   Log in
                 </button>
+
               </div>
               <div class="form-group">
                 <p>
@@ -49,6 +68,9 @@
                   <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                 </p>
               </div>
+            </form>
+            <form asp-page-handler="switch" method="post">
+              <button class="ui primary button">Change Language</button>
             </form>
           </section>
         </div>

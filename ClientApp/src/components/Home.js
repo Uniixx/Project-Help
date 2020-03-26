@@ -1,25 +1,190 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import "semantic-ui-css/semantic.min.css";
+import "./Home.css";
+import video from "./ProjectHelp.mp4";
 
 export class Home extends Component {
   static displayName = Home.name;
 
-  render () {
-    return (
+  constructor(props) {
+    super(props);
+    this.state = {
+      language: "EN"
+    };
+    this.switchLanguage = this.switchLanguage.bind(this);
+  }
+
+  switchLanguage() {
+    const { language } = this.state;
+    this.setState({ language: language == "EN" ? "FR" : "EN" });
+  }
+
+  render() {
+    const { language } = this.state;
+    return language == "EN" ? (
       <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
+        <header class="header">
+          <nav class="navbar navbar-expand-lg fixed-top py-3">
+            <div class="container">
+              <a href="#" class="navbar-brand font-weight-bold">
+                iHelp
+              </a>
+              <button
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler-right"
+              >
+                <i class="fa fa-bars"></i>
+              </button>
+
+              <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a
+                      href="about"
+                      class="nav-link text-uppercase font-weight-bold"
+                    >
+                      About
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="contact"
+                      class="nav-link text-uppercase font-weight-bold"
+                    >
+                      Contact
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="/profile"
+                      class="nav-link text-uppercase font-weight-bold"
+                    >
+                      Login
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="/Identity/Account/Register"
+                      class="nav-link text-uppercase font-weight-bold"
+                    >
+                      Register
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="#"
+                      class="nav-link text-uppercase font-weight-bold"
+                      onClick={this.switchLanguage}
+                    >
+                      FR
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <div class="videoContainer">
+          <div class="overlay"></div>
+          <video autoPlay muted loop id="video">
+            <source src={video} type="video/mp4" />
+          </video>
+        </div>
+        <div class="center">
+          <p style={{ color: "#fff", textAlign: "center" }}>
+            <h1>We connect people to volunteers around the world</h1>A simple
+            and elegant plateform aiming to help people that are willings to
+            volunteer or find people to help them on their daily basis.
+          </p>
+        </div>
+      </div>
+    ) : (
+      <div>
+        <header class="header">
+          <nav class="navbar navbar-expand-lg fixed-top py-3">
+            <div class="container">
+              <a href="#" class="navbar-brand font-weight-bold">
+                iHelp
+              </a>
+              <button
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler-right"
+              >
+                <i class="fa fa-bars"></i>
+              </button>
+
+              <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a
+                      href="about"
+                      class="nav-link text-uppercase font-weight-bold"
+                    >
+                      À propos
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="contact"
+                      class="nav-link text-uppercase font-weight-bold"
+                    >
+                      Contactez-nous
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="/profile"
+                      class="nav-link text-uppercase font-weight-bold"
+                    >
+                      Connexion
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="/Identity/Account/Register"
+                      class="nav-link text-uppercase font-weight-bold"
+                    >
+                      Inscription
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="#"
+                      class="nav-link text-uppercase font-weight-bold"
+                      onClick={this.switchLanguage}
+                    >
+                      EN
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <div class="videoContainer">
+          <div class="overlay"></div>
+          <video autoPlay muted loop id="video">
+            <source src={video} type="video/mp4" />
+          </video>
+        </div>
+        <div class="center">
+          <p style={{ color: "#fff", textAlign: "center" }}>
+            <h1>Nous connectons les bénévoles partoût dans le monde</h1>Une
+            plateforme simple et élégante visant à aider les gens qui veulent
+            offrir du temps comme bénévole ou ceux et celles qui recherche de
+            l'aide pour leur quotidien.
+          </p>
+        </div>
       </div>
     );
   }
