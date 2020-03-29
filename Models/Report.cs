@@ -15,6 +15,6 @@ namespace Project_help.Models
         public string Assignee { get; set; }
         public bool IsComplete { get; set; }
         public int Status { get; set; } // example 1 = open 2 = being reviewed -1 = closed and set the bool to true.
-        public byte Video { get; set; }
+        public byte Video { get; set; } // dunno wether it should be byte or string to a video from like youtube or smth
     }
 }
