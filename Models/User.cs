@@ -9,5 +9,6 @@ namespace Project_help.Models
     {
         public virtual ICollection<Company> Companies { get; set; }
         public string UserBio { get; set; }
+        public string UserAvatar { get; set; }
     }
 }

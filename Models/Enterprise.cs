@@ -17,5 +17,10 @@ namespace Project_help.Models
 
         public bool IsApartOfACompany { get; set; }
         public string[] Companies { get; set; }
+
+        // Subscripton information
+
+        public bool IsAccountPremium { get; set; }
+        public DateTime DueDate { get; set; }
     }
 }
